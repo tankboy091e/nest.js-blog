@@ -3,11 +3,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Secretary } from 'src/secretary/secretary.service';
 import { Repository } from 'typeorm';
 import ArticleService from '../article.service';
-import { ArticleDto } from '../dto/article';
 import { Essais } from './entities/essais.entity';
 
 @Injectable()
-export class EssaisService extends ArticleService<Essais, ArticleDto> {
+export class EssaisService extends ArticleService {
   constructor(
     @InjectRepository(Essais)
     protected readonly respository: Repository<Essais>,

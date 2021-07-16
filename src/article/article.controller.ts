@@ -10,10 +10,12 @@ import {
 } from '@nestjs/common';
 import { Role } from 'src/common/decorators/role.decorator';
 import ArticleService from './article.service';
+import { CreateArticleDto } from './dto/create-article.dto';
+import { UpdateArticleDto } from './dto/update-article-dto';
 
 @Controller()
-export class ArticleController<T, K> {
-  constructor(protected readonly service: ArticleService<T, K>) {}
+export class ArticleController {
+  constructor(protected readonly service: ArticleService) {}
 
   @Get()
   getAll() {
@@ -27,13 +29,13 @@ export class ArticleController<T, K> {
 
   @Post()
   @Role('user')
-  create(@Body() data: K) {
+  create(@Body() data: CreateArticleDto) {
     return this.service.create(data);
   }
 
   @Patch('/:id')
   @Role('user')
-  update(@Param('id') id: number, @Body() data: K) {
+  update(@Param('id') id: number, @Body() data: UpdateArticleDto) {
     return this.service.update(id, data);
   }
 
