@@ -30,10 +30,11 @@ export class AuthController {
 
     const user = await this.service.validateWithRefreshToken(refreshToken);
 
-    const accessToken = this.service.issueAccessToken(user);
+    const { accessToken, expiresSecond } = this.service.issueAccessToken(user);
 
     return {
       access_token: accessToken,
+      expiresIn: expiresSecond * 1000,
     };
   }
 
@@ -54,6 +55,7 @@ export class AuthController {
       .status(200)
       .json({
         access_token: accessToken,
+        expiresIn: expiresSecond * 1000,
       });
   }
 }
