@@ -14,8 +14,13 @@ abstract class ArticleService {
     secretary.setContext(`${respository.metadata.name}Service`);
   }
 
-  public async findAll() {
-    const result = await this.respository.find();
+  public async find(take?: number) {
+    const result = await this.respository.find({
+      order: {
+        created_at: 'DESC',
+      },
+      take,
+    });
     if (!result) {
       throw new NotFoundException();
     }

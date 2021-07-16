@@ -14,11 +14,12 @@ export class LibraryService {
     private readonly configService: ConfigService,
   ) {}
 
-  public findAll() {
+  public find(take?: number) {
     return this.repository.find({
       order: {
         created_at: 'DESC',
       },
+      take,
     });
   }
 
@@ -75,7 +76,7 @@ export class LibraryService {
   }
 
   public async searchInLibrary(value: string) {
-    const books = await this.findAll();
+    const books = await this.find();
     const result = books.find((book) => book.title.includes(value));
     if (!result) {
       throw new NotFoundException();

@@ -19,7 +19,7 @@ export class ArticleController {
 
   @Get()
   getAll() {
-    return this.service.findAll();
+    return this.service.find();
   }
 
   @Get('/:id')

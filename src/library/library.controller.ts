@@ -15,7 +15,7 @@ export class LibraryController {
 
   @Get()
   public findAll() {
-    return this.service.findAll();
+    return this.service.find();
   }
 
   @Get('search')
