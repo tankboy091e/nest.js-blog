@@ -26,6 +26,7 @@ export class AuthService {
   public async validate({ email, password }: ValidateUserDto) {
     const user = await this.userService.findOneByEmail(email);
 
+    console.log(user);
     if (!user) {
       throw new NotFoundException();
     }

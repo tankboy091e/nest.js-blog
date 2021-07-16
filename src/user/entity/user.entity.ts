@@ -6,12 +6,12 @@ export class User extends BaseEntity {
   @Column()
   public email: string;
 
-  @Column({ select: false })
+  @Column()
   public password: string;
 
   @Column()
   public username: string;
 
-  @Column({ nullable: true, select: false })
+  @Column({ nullable: true })
   public refreshToken: string;
 }

@@ -45,7 +45,8 @@ export class AuthController {
     const { refreshToken, expiresSecond } =
       this.service.issueRefreshToken(user);
 
-    const accessToken = this.service.issueAccessToken(user);
+    const { accessToken, expiresSecond: accessTokenExpiresSecond } =
+      this.service.issueAccessToken(user);
 
     res
       .cookie('refresh_token', refreshToken, {
@@ -55,7 +56,7 @@ export class AuthController {
       .status(200)
       .json({
         access_token: accessToken,
-        expiresIn: expiresSecond * 1000,
+        expiresIn: accessTokenExpiresSecond * 1000,
       });
   }
 }

@@ -7,6 +7,10 @@ async function drive() {
   const app = await NestFactory.create(AppModule, {
     logger: console,
   });
+  app.enableCors({
+    origin: process.env.ORIGIN,
+    credentials: true,
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
