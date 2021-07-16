@@ -14,7 +14,15 @@ export class LibraryService {
     private readonly configService: ConfigService,
   ) {}
 
-  public find(take?: number) {
+  public find() {
+    return this.repository.find({
+      order: {
+        title: 'ASC',
+      },
+    });
+  }
+
+  public choose(take?: number) {
     return this.repository.find({
       order: {
         created_at: 'DESC',

@@ -24,7 +24,9 @@ abstract class ArticleService {
     if (!result) {
       throw new NotFoundException();
     }
-    this.secretary.log('Successed to find all resources from');
+    this.secretary.log(
+      `Successed to find ${take ? take : 'every'} resources from`,
+    );
     return result;
   }
 

@@ -26,6 +26,6 @@ export class AppService {
   }
 
   public getLibrary() {
-    return this.libraryService.find(10);
+    return this.libraryService.choose(5);
   }
 }
