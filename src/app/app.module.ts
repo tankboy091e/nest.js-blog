@@ -7,6 +7,8 @@ import { Dev } from 'src/article/dev/entities/dev.entity';
 import { Essais } from 'src/article/essais/entities/essais.entity';
 import { Sum } from 'src/article/sum/entities/sum.entity';
 import { AuthModule } from 'src/auth/auth.module';
+import { CommentModule } from 'src/comments/comment.module';
+import { Comment } from 'src/comments/entity/comment.entity';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { Library } from 'src/library/entity/library.entity';
 import { LibraryModule } from 'src/library/library.module';
@@ -24,14 +26,15 @@ import { UserModule } from '../user/user.module';
         username: process.env.DATABASE_USER,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
-        entities: [User, Sum, Essais, Dev, Library],
+        entities: [User, Sum, Essais, Dev, Library, Comment],
         synchronize: true,
       }),
     }),
-    ArticleModule,
     UserModule,
     AuthModule,
+    ArticleModule,
     LibraryModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [
