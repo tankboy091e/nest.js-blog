@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { REFRESH_TOKEN } from 'src/common/constants/token';
 import { NoContent } from 'src/common/decorators/no-content.decorator';
 import { Role } from 'src/common/decorators/role.decorator';
 import { Token } from 'src/common/decorators/token.decorator';
@@ -21,12 +22,12 @@ export class AuthController {
   @Get('signout')
   public async signout(@Token('sub') sub: number, @Res() res: Response) {
     await this.service.signout(sub);
-    res.clearCookie('refresh_token').status(204).end();
+    res.clearCookie(REFRESH_TOKEN).status(204).end();
   }
 
   @Get('token')
   public async issue(@Req() req: Request) {
-    const refreshToken = req.cookies?.['refresh_token'];
+    const refreshToken = req.cookies?.[REFRESH_TOKEN];
 
     const user = await this.service.validateWithRefreshToken(refreshToken);
 
@@ -48,8 +49,9 @@ export class AuthController {
     const { accessToken, expiresSecond: accessTokenExpiresSecond } =
       this.service.issueAccessToken(user);
 
+    res.setHeader('Access-Control-Allow-Headers', 'set-cookie');
     res
-      .cookie('refresh_token', refreshToken, {
+      .cookie(REFRESH_TOKEN, refreshToken, {
         maxAge: expiresSecond * 1000,
         httpOnly: true,
       })
