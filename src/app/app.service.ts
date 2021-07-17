@@ -13,6 +13,10 @@ export class AppService {
     private readonly libraryService: LibraryService,
   ) {}
 
+  public hello() {
+    return 'hello';
+  }
+
   public getSum() {
     return this.sumServcie.find(10);
   }
