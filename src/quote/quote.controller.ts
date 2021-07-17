@@ -36,12 +36,12 @@ export class QuoteController {
   @Patch(':id')
   @Role('user')
   public update(@Param() id: number, @Body() data: UpdateQuoteDto) {
-    return this.update(id, data);
+    return this.service.update(id, data);
   }
 
   @Delete(':id')
   @Role('user')
   public delete(@Param() id: number) {
-    return this.delete(id);
+    return this.service.delete(id);
   }
 }
