@@ -1,9 +1,8 @@
-import { IsOptional, IsString, Length } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateQuoteDto {
-  @IsString()
-  @Length(1, 13)
-  public readonly isbn: string;
+  @IsNumber()
+  public readonly library: number;
 
   @IsString()
   public readonly page: string;

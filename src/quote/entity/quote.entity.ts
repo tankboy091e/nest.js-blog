@@ -3,8 +3,8 @@ import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class Quote extends BaseEntity {
-  @Column({ length: 13 })
-  public isbn: string;
+  @Column()
+  public library: number;
 
   @Column({ type: 'text', nullable: true })
   public annotation: string;

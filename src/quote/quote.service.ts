@@ -16,10 +16,13 @@ export class QuoteService {
     return this.repository.findOne(id);
   }
 
-  public findOneByIsbn(isbn: string) {
-    return this.repository.findOne({
+  public findAllByLibrary(library: number) {
+    return this.repository.find({
       where: {
-        isbn,
+        library,
+      },
+      order: {
+        page: 'ASC',
       },
     });
   }

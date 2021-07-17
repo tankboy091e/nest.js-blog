@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { Role } from 'src/common/decorators/role.decorator';
 import { CreateQuoteDto } from './dto/create-quote.dto';
@@ -15,6 +16,11 @@ import { QuoteService } from './quote.service';
 @Controller('quote')
 export class QuoteController {
   constructor(private readonly service: QuoteService) {}
+
+  @Get()
+  public findAllByLibrary(@Query('library') library: number) {
+    return this.service.findAllByLibrary(library);
+  }
 
   @Get(':id')
   public findOne(@Param() id: number) {
