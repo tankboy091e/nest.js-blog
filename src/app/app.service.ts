@@ -17,6 +17,10 @@ export class AppService {
     return 'hello';
   }
 
+  public health() {
+    return 'good';
+  }
+
   public getSum() {
     return this.sumServcie.find(10);
   }
