@@ -19,7 +19,7 @@ export class LibraryController {
   }
 
   @Get('search')
-  public search(@Query() value: string, @Query('from') from: string) {
+  public search(@Query('value') value: string, @Query('from') from: string) {
     switch (from) {
       case 'library':
         return this.service.searchInLibrary(value);
