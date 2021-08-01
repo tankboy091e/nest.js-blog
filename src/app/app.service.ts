@@ -22,7 +22,7 @@ export class AppService {
   }
 
   public getSum() {
-    return this.sumServcie.find(10);
+    return this.sumServcie.find(6);
   }
 
   public getEssais() {
@@ -30,7 +30,7 @@ export class AppService {
   }
 
   public getDev() {
-    return this.devService.find(10);
+    return this.devService.find(3);
   }
 
   public getLibrary() {

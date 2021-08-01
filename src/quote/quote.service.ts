@@ -16,14 +16,37 @@ export class QuoteService {
     return this.repository.findOne(id);
   }
 
-  public findAllByLibrary(library: number) {
-    return this.repository.find({
+  public async findAllByLibrary(library: number) {
+    const result = await this.repository.find({
       where: {
         library,
       },
       order: {
         page: 'ASC',
       },
+    });
+
+    const parsePage = ({ page }: Quote) => {
+      if (page.includes('-')) {
+        const [from, to] = page.trim().split('-');
+        const integar = parseInt(from, 10);
+        const demical = parseInt(to, 10) * Math.pow(10, -1 * to.length);
+        return integar + demical;
+      }
+      return parseInt(page, 10);
+    };
+
+    return result.sort((a, b) => {
+      const pageA = parsePage(a);
+      const pageB = parsePage(b);
+
+      if (pageA > pageB) {
+        return 1;
+      }
+      if (pageA < pageB) {
+        return -1;
+      }
+      return 0;
     });
   }
 
