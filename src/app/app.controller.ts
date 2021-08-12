@@ -5,6 +5,16 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly service: AppService) {}
 
+  @Get()
+  public hello() {
+    return this.service.hello();
+  }
+
+  @Get('health')
+  public health() {
+    return this.service.health();
+  }
+
   @Get('home')
   public async home() {
     const [sum, essais, dev, library] = await Promise.all([

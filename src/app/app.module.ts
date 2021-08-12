@@ -9,11 +9,13 @@ import { EssaisModule } from 'src/article/essais/essais.module';
 import { Sum } from 'src/article/sum/entities/sum.entity';
 import { SumModule } from 'src/article/sum/sum.module';
 import { AuthModule } from 'src/auth/auth.module';
-import { CommentModule } from 'src/comments/comment.module';
-import { Comment } from 'src/comments/entity/comment.entity';
+import { CommentModule } from 'src/comment/comment.module';
+import { Comment } from 'src/comment/entity/comment.entity';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { Library } from 'src/library/entity/library.entity';
 import { LibraryModule } from 'src/library/library.module';
+import { Quote } from 'src/quote/entity/quote.entity';
+import { QuoteModule } from 'src/quote/quote.module';
 import { User } from 'src/user/entity/user.entity';
 import { UserModule } from '../user/user.module';
 import { AppController } from './app.controller';
@@ -30,10 +32,11 @@ import { AppService } from './app.service';
         username: process.env.DATABASE_USER,
         password: process.env.DATABASE_PASSWORD,
         database: process.env.DATABASE_NAME,
-        entities: [User, Sum, Essais, Dev, Library, Comment],
+        entities: [User, Sum, Essais, Dev, Library, Comment, Quote],
         synchronize: true,
       }),
     }),
+    QuoteModule,
     UserModule,
     AuthModule,
     SumModule,

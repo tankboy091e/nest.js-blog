@@ -22,6 +22,12 @@ export class LibraryService {
     });
   }
 
+  public findOneByIsbn(isbn: string) {
+    return this.repository.findOne({
+      where: { isbn },
+    });
+  }
+
   public choose(take?: number) {
     return this.repository.find({
       order: {
@@ -99,7 +105,7 @@ export class LibraryService {
           'ALADIN_KEY',
         )}&Query=${encodeURI(
           value,
-        )}&MaxResults=10&start=1&cover=big&output=JS&Version=20131101`,
+        )}&MaxResults=20&start=1&cover=big&output=JS&Version=20131101`,
       )
       .toPromise();
 
